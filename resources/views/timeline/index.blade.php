@@ -1,19 +1,33 @@
 @extends('templates.homepage')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+.icon{
+    font-size:18px!important;
+}
+.w3-ul a {
+    text-decoration: none!important;
+}
+#color{
+    color:white!important;
+}
+</style>
 @section('content')
-<m-body class="mdl-color--grey-100">
+<m-body class="mdl-color--grey-100" style="background-color:red;">
         <div class="mdl-grid m-newsfeed m-page">
-            <div class="mdl-cell mdl-cell--4-col m-newsfeed--sidebar">
-                <minds-card-user class="mdl-card m-border ng-star-inserted" style="margin-bottom:16px;">
-                    <div class="m-card--user--banner">
-                        <div class="m-card--user--banner--img" style="background-image: url(&quot;https://cdn.minds.com/fs/v1/banners/939229668005912588/fat/1549305802&quot;);"></div>
-                        <div class="minds-banner-overlay"></div>
-                    </div>
-                    <a class="mdl-card__supporting-text minds-usercard-block" href="{{route('profile.index', ['username' => Auth::user()->username])}}">
-                        <div class="avatar"><img src="{{Auth::user()->getAvatarUrl() }}"></div>
-                    </a>
-                  </minds-card-user>
-            </div>
+            <form class="mdl-cell mdl-cell--4-col m-newsfeed--sidebar" id="tag" action="{{ route('home') }}" method="GET">
+            <ul class="w3-ul w3-hoverable" >
+
+                <a href="{{ route('home') }}"><li class=" w3-light-blue  w3-hover-blue" id="All" >All<i class="fas fa-globe pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class=" w3-light-blue  w3-hover-blue" id="Trending">Trending<i class="fab fa-hotjar pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class="w3-light-blue w3-hover-blue" id="vat">Ăn Vặt<i class="fas fa-ice-cream pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class=" w3-light-blue w3-hover-blue" id="sang">Ăn Sáng<i class="fas fa-hamburger pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class=" w3-light-blue w3-hover-blue" id="nha">Ăn Nhà<i class="fas fa-home pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class=" w3-light-blue w3-hover-blue" id="ngon">Ăn Ngon<i class="fas fa-utensils pull-right icon"></i></li></a>
+                <a onclick="return getStatus(this);"><li class=" w3-light-blue w3-hover-blue" id="nhau">Ăn Nhậu<i class="fas fa-beer pull-right icon"></i></li></a>
+            </ul>
+            <input name="value" id="value" hidden>
+            </form>
 
             <div class="mdl-cell mdl-cell--8-col m-newsfeed--feed">
                     <minds-newsfeed-poster>
@@ -23,30 +37,30 @@
                                 <div class="minds-avatar">
                                     <a href="{{route('profile.index', ['username' => Auth::user()->username])}}"><img class="m-border" src="{{Auth::user()->getAvatarUrl() }}"></a>
                                 </div>
-                                <form class="ng-untouched ng-pristine ng-valid" action="{{ route('status.post') }}" method="post">
+                                <form class="ng-untouched ng-pristine ng-valid" action="{{ route('status.post') }}" method="post"  enctype="multipart/form-data">
                                     <div class="{{ $errors->has('status') ? ' has-error' : ''}}">
                                         <textarea class="mdl-textfield__input ng-untouched ng-pristine ng-valid" name="status" placeholder="Chia sẻ của {{Auth::user()->getFirstNameOrUsername() }} ...." type="text" style="height: 80px;"></textarea>
-                                    
+
                                     @if ($errors->has('status'))
                                         <span class="help-block"> {{ $errors->first('status') }}</span>
                                     @endif
-
                                     </div>
 
                                     <div class="mdl-card__actions">
-                                        <div class="attachment-button"><i class="material-icons">attachment</i>
-                                            <input id="file" name="attachment" type="file">
-                                        </div><a class="m-mature-button" title="Mature content"><i class="material-icons">explicit</i><!----></a>
+                                        <div class="attachment-button"><i class="material-icons">image</i>
+                                            <input id="post_image" name="post_image" type="file">
+                                        </div>
+                                        <select class="btn btn-small" name="hashtag" id="hashtag" style="border: 1px solid #c5c3c3;">
+                                            <option selected disabled>Hashtag</option>
+                                            <option>Ăn Vặt</option>
+                                            <option>Ăn Sáng</option>
+                                            <option>Ăn Nhà</option>
+                                        </select>
 
-                                        <button class="m-btn m-btn--slim m-btn--with-icon">
-                                            <span>Hashtags</span>
-                                            <i class="material-icons" m-tooltip--anchor="">label</i>
-                                        </button>
-
-                                        <button class="m-btn m-btn--slim m-btn m-btn--with-icon">
-                                            <span>Public</span> 
+                                        <a class="m-btn m-btn--slim m-btn m-btn--with-icon" href="#" style="text-decoration:none;">
+                                            <span>Public</span>
                                             <i class="material-icons ng-star-inserted" m-tooltip--anchor="">people</i>
-                                        </button>
+                                        </a>
 
                                         <button class="m-btn m-btn--slim m-btn m-btn--with-icon" type="submit">
                                             <span>Đăng</span>
@@ -64,10 +78,10 @@
                         </div>
                     </minds-newsfeed-poster>
 
-                    
+
 
                     <div class="minds-list">
-                      
+
                             <m-newsfeed--boost-rotator interval="4" class="ng-star-inserted">
                                 <div class="m-boost-rotator-tools">
                                     <div class="m-layout--spacer"></div>
@@ -92,18 +106,6 @@
 
                                     <div class="body">
                                         <a href="{{route('profile.index', ['username' => $status->user->username])}}"><strong> {{ $status->user->getNameOrUsername() }} </strong>
-                                          <!-- <div class="m-channel--badges-activity">
-                                            <ul class="m-channel--badges">
-                                              <li class="ng-star-inserted">
-                                                  <m-tooltip icon="verified_user">
-                                                      <div class="m-tooltip">
-                                                          <i class="material-icons selected ng-star-inserted">verified_user</i>
-                                                             <div class="m-tooltip--bubble" hidden=""> Verified </div>
-                                                      </div>
-                                                  </m-tooltip>
-                                              </li>
-                                            </ul>
-                                          </div> -->
                                         </a>
 
                                       <a class="permalink ng-star-inserted" href=""><span>{{ $status->created_at->diffForHumans() }}</span><!----><!----></a>
@@ -114,8 +116,17 @@
                                 <div class="mdl-card__supporting-text message m-mature-message ng-star-inserted" m-read-more="">
                                    <span class="m-mature-message-content">
                                           {{ $status->body }}
+                                          <div class="text-center">
+                                          @if(true)
+                                          <img  src="{{$status->image}}" style="max-width: 50%;">
+                                          @endif
+                                          </div>
                                     </span>
-                                    
+
+                                    @if ($status->user->id !== Auth::user()->id)
+                                      {{ $status->likes->count() }} <a href = "{{route('status.like', ['statusId' => $status->id])}}"><i class="fas fa-pizza-slice"></i></a>
+                                    @endif
+
                                     <m-read-more--button>
                                         <!---->
                                     </m-read-more--button>
@@ -129,46 +140,77 @@
                                 <!-- <div class="tabs ng-star-inserted">
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_up</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_down</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                    
+
                                     <m-wire-button class="ng-star-inserted">
                                         <button class="m-wire-button"><i class="ion-icon ion-flash"></i></button>
                                     </m-wire-button>
 
                                     <minds-button><a class="mdl-color-text--blue-grey-500 selected"><i class="material-icons">chat_bubble</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">repeat</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                    
+
                                 </div> -->
                                 <!---->
                                 <div class="impressions-tag m-activity--metrics m-activity--metrics-wire ng-star-inserted">
                                     <div class="m-activity--metrics-inner m-border">
-                                        <div class="m-activity--metrics-metric"><i class="ion-icon ion-flash"></i>
-                                            <!----><span class="ng-star-inserted">?</span></div>
+                                        <div class="m-activity--metrics-metric"><i class="fas fa-pizza-slice"></i>
+                                            <!----><span class="ng-star-inserted">{{ $status->likes->count() }} </span></div>
                                         <div class="m-activity--metrics-metric"><i class="material-icons">remove_red_eye</i><span>?</span></div>
                                     </div>
                                 </div>
 
+
                                 <minds-comments>
-                                    <div class="m-comment m-comment--poster minds-block ng-star-inserted">
+                                  @foreach ($status->replies as $reply)
+
+                                    <div class="media">
+                                      <div class="m-owner-block">
+                                          <div class="avatar" >
+                                              <a href="{{ route('profile.index', ['username' => $reply->user->username]) }}"><img class="mdl-shadow--2dp" src="{{ $reply->user->getAvatarUrl() }}"></a>
+                                          </div>
+                                      </div>
+
+                                      <!--
+                                        <a class="pull-left" href="{{ route('profile.index', ['username' => $reply->user->username]) }}">
+                                            <img class="media-object" alt="{{ $reply->user->getNameOrUsername() }}" src="{{ $reply->user->getAvatarUrl() }}">
+                                        </a> -->
+                                        <div class="media-body">
+                                            <p class="media-heading"><a href="{{ route('profile.index', ['username' => $reply->user->username]) }}">{{ $reply->user->getNameOrUsername() }}</a></p>
+                                            <p>{{ $reply->body }}</p>
+                                        </div>
+
+
+
+                                    </div>
+                                    @endforeach
+                                    <!-- <div class="m-comment m-comment--poster minds-block ng-star-inserted">
                                         <div class="minds-avatar">
                                             <a href="{{route('profile.index', ['username' => $status->user->username])}}"><img class="mdl-shadow--2dp" src="{{ $status->user->getAvatarUrl() }}"></a>
                                         </div>
-                                        <div class="minds-body">
-                                            <div class="m-comments-composer">
-                                                <form class="ng-untouched ng-pristine ng-valid" action="{{ route('status.reply', ['statusId' => $status->id])}}" method="post">
-                                                    <minds-textarea name="reply">
-                                                    </minds-textarea>
-                                                    <input type="submit" class="m-btn" value="Nhập">
-                                                    <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                                </form>
-                                            </div>
+                                    </div> -->
+                                    <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
+                                        <div class="form-group{{ $errors->has("reply-{$status->id}") ? ' has-error': '' }}">
+                                            <textarea name = "reply-{{ $status->id }}" class="form-control" rows="2"></textarea>
+                                            @if ($errors->has("reply-{$status->id}"))
+                                                <span class="help-block">{{ $errors->first("reply-{$status->id}" )}}</span>
+                                            @endif
                                         </div>
-                                    </div>
+                                        <input type="submit" class="m-btn" value="Nhập">
+                                        <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                    </form>
+                                        <!-- <div class="m-comments-composer">
+                                            <form class="" action="{{ route('status.reply', ['statusId' => $status->id])}}" method="post">
+                                                <minds-textarea name="reply-[{$status->id}]">
+                                                </minds-textarea>
+                                                <input type="submit" class="m-btn" value="Nhập">
+                                                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                            </form>
+                                        </div> -->
                                 </minds-comments>
 
                                 <!-- <form role = "form" action = "{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
                                     <div class="form-group{{ $errors->has('reply-{$status->id}') ? ' has-error' : ''}}">
                                         <textarea name="reply-{{ $status->id }}" class="m-comments-composer">
-                                          
+
                                         </textarea>
                                         @if ($errors->has("reply-{$status->id}"))
                                             <span class="help-block">
@@ -182,10 +224,13 @@
                                 <!---->
                                 <!---->
                                 <!---->
+
                                 <div class="mdl-card__menu mdl-color-text--blue-grey-300 ng-star-inserted">
-                                    <button class="mdl-button m-pin-button mdl-button--icon">
-                                    </button>
-                                    <button class="mdl-button m-translate-button mdl-button--icon ng-star-inserted"><i class="material-icons">public</i></button>
+                                @if($status->hashtag)
+                                    <span class="label label-info pull-left " style="color:white;">{{$status->hashtag}}</span>
+                                @endif
+                                <i class="material-icons">public</i>
+
                                    <!--  <m-post-menu>
                                         <button class="mdl-button minds-more mdl-button--icon" data-vivaldi-spatnav-clickable="1"><i class="material-icons">keyboard_arrow_down</i></button>
                                         <ul class="minds-dropdown-menu" hidden="">
@@ -211,7 +256,7 @@
 
                             </infinite-scroll>
 
-                            
+
 
                         @else
 
@@ -224,5 +269,17 @@
         </div>
 
 </m-body>
-
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script>
+function getStatus(ele){
+    console.log();
+    $("#value").val($(ele)[0].text);
+    console.log( $("#value").val());
+    document.getElementById('tag').submit();
+    return false;
+}
+</script>
 @stop

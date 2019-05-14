@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatusesTable extends Migration
+class CreatePpMarkerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('pp_marker', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('parent_id')->nullable();
-            $table->text('body');
-            $table->text('image')->nullable();
-            $table->text('hashtag')->nullable();;
-            $table->boolean('isTrending')->default(0);
+            $table->integer('body');
+            $table->text('type');
+            $table->double('latitute');
+            $table->double('longitute');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('pp_marker');
     }
 }

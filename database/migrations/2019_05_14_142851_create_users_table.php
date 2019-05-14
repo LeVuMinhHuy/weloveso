@@ -21,10 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('password_confirmation');
             $table->string('email');
+            $table->string('cover')->nullable();
             $table->string('avatar')->nullable();
             $table->string('company')->nullable();
             $table->string('location')->nullable();
             $table->string('remember_token')->nullable();
+            $table->string('Introduce')->nullable();
+            $table->string('IntroImage')->nullable();
             $table->timestamps();
         });
     }

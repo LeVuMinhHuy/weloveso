@@ -1,28 +1,45 @@
 @extends('templates.homepage')
 @section('content')
+
 <div class="container">
     <h4>Cập nhật thông tin</h4>
     <hr>
   <div class="row">
       <!-- left column -->
-      <div class="col-md-3">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <br><br>
-          <input type="file" class="form-control">
-        </div>
-      </div>
+
       
       <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-              Bạn đừng bị bất ngờ vì password của bạn quá dài nka. Chúng mình mã hóa nó đó!
+      <div class="col-md-12 personal-info">
+        <form class="form-horizontal" role="form" method="post" action = "{{route('profile.edit')}}"  enctype="multipart/form-data">
+        <div class="col-lg-4">
+        <div class="text-center">
+          <img src="{{Auth::user()->getAvatarUrl()}}" class="avatar img-circle" alt="avatar" style="width: 50px; height:50px">
+          <br><br>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Avatar</label>
+            <div class="col-lg-8">
+              <input type="file" class="form-control" name="avatar" id="avatar">
+            </div>
+          </div>
+          <div class="alert alert-info alert-dismissable">
+                  <i class="fa fa-edit"></i>
+                      Avatar nên có size là 500x500 px
+            </div>
+          <img src="{{Auth::user()->getCoverUrl()}}" class="avatar" alt="cover" style="width: 200px; height:50px">
+          <br><br>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Cover</label>
+            <div class="col-lg-8">
+              <input type="file" class="form-control" name="cover" id="cover">
+            </div>
+          </div>
+          <div class="alert alert-info alert-dismissable">
+                  <i class="fa fa-edit"></i>
+                      Avatar nên có size là 1024x320 px
+            </div>
         </div>
-        
-        
-        <form class="form-horizontal" role="form" method="post" action = "{{route('profile.edit')}}">
+        </div>
+        <div class="col-lg-8">
           <div class="form-group{{ $errors->has('last_name') ? ' has-error' : ''}}">
             <label class="col-lg-3 control-label">Họ và tên đệm:</label>
             <div class="col-lg-8">
@@ -96,6 +113,11 @@
                     <span class = "help-block">{{ $errors->first('password_confirmation')}}</span>
                 @endif
           </div>
+          <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+              Bạn đừng bị bất ngờ vì password của bạn quá dài nka. Chúng mình mã hóa nó đó!
+          </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
@@ -104,12 +126,11 @@
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
           </div>
-
+          </div>
           <input type="hidden" name="_token" value="{{ Session::token() }}">
         </form>
       </div>
   </div>
 </div>
 <hr>
-
 @stop

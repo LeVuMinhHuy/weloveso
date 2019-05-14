@@ -3,8 +3,8 @@
 @section('content')
     
 <body class="antialiased font-sans">
-    <div class="md:flex min-h-screen">
-        <div class="w-full md:w-1/2 bg-white flex items-center justify-center">
+    <div class="md:flex min-h-screen" >
+        <div class="w-full md:w-1/2 flex items-center justify-center">
             <div class="max-w-sm m-8">
                 <div class="text-black text-5xl md:text-15xl font-black">
                     Hihi </div>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2">
-            <div style="background-image: url(http://127.0.0.1/public/svg/403.svg);" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+            <div class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
             </div>
         </div>
     </div>
