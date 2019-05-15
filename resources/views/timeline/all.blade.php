@@ -19,8 +19,7 @@
     <div class="mdl-cell m-newsfeed--sidebar">
         <minds-card-user class="mdl-card m-border ng-star-inserted" style="margin-bottom:16px;">
             <div class="m-card--user--banner">
-                <div class="m-card--user--banner--img" style="background-image: url(&quot;https://cdn.minds.com/fs/v1/banners/939229668005912588/fat/1549305802&quot;);"></div>
-                <div class="minds-banner-overlay"></div>
+              <div class="m-card--user--banner--img"><img src="{{Auth::user()->getCoverUrl() }}"></div>                <div class="minds-banner-overlay"></div>
             </div>
             <a class="mdl-card__supporting-text minds-usercard-block" href="{{route('profile.index', ['username' => Auth::user()->username])}}">
                 <div class="avatar"><img src="{{Auth::user()->getAvatarUrl() }}"></div>
@@ -111,11 +110,8 @@
                                         </ul>
                                     </div>
                                 </m-newsfeed--boost-rotator>
-
-                          @if ($statuses->count())
-                              @foreach ($statuses as $status)
-
-
+    @if ($statuses->count())
+        @foreach ($statuses as $status)
                                 <minds-activity class="mdl-card m-border item ng-star-inserted">
                                     <div class="mdl-card__supporting-text mdl-color-text--grey-600 m-owner-block ng-star-inserted">
                                         <div class="avatar" >
@@ -151,23 +147,6 @@
 
                                     </div>
 
-                                    <m-translate class="ng-star-inserted">
-
-                                    </m-translate>
-
-                                    <!-- <div class="tabs ng-star-inserted">
-                                        <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_up</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                        <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_down</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-
-                                        <m-wire-button class="ng-star-inserted">
-                                            <button class="m-wire-button"><i class="ion-icon ion-flash"></i></button>
-                                        </m-wire-button>
-
-                                        <minds-button><a class="mdl-color-text--blue-grey-500 selected"><i class="material-icons">chat_bubble</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                        <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">repeat</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-
-                                    </div> -->
-                                    <!---->
                                     <div class="impressions-tag m-activity--metrics m-activity--metrics-wire ng-star-inserted">
                                         <div class="m-activity--metrics-inner m-border">
                                             <div class="m-activity--metrics-metric"><i class="fas fa-pizza-slice"></i>
@@ -187,24 +166,14 @@
                                               </div>
                                           </div>
 
-                                          <!--
-                                            <a class="pull-left" href="{{ route('profile.index', ['username' => $reply->user->username]) }}">
-                                                <img class="media-object" alt="{{ $reply->user->getNameOrUsername() }}" src="{{ $reply->user->getAvatarUrl() }}">
-                                            </a> -->
                                             <div class="media-body">
                                                 <p class="media-heading"><a href="{{ route('profile.index', ['username' => $reply->user->username]) }}">{{ $reply->user->getNameOrUsername() }}</a></p>
                                                 <p>{{ $reply->body }}</p>
                                             </div>
 
-
-
                                         </div>
                                         @endforeach
-                                        <!-- <div class="m-comment m-comment--poster minds-block ng-star-inserted">
-                                            <div class="minds-avatar">
-                                                <a href="{{route('profile.index', ['username' => $status->user->username])}}"><img class="mdl-shadow--2dp" src="{{ $status->user->getAvatarUrl() }}"></a>
-                                            </div>
-                                        </div> -->
+
                                         <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
                                             <div class="form-group{{ $errors->has("reply-{$status->id}") ? ' has-error': '' }}">
                                                 <textarea name = "reply-{{ $status->id }}" class="form-control" rows="2"></textarea>
@@ -215,33 +184,7 @@
                                             <input type="submit" class="m-btn" value="Nhập">
                                             <input type="hidden" name="_token" value="{{ Session::token() }}">
                                         </form>
-                                            <!-- <div class="m-comments-composer">
-                                                <form class="" action="{{ route('status.reply', ['statusId' => $status->id])}}" method="post">
-                                                    <minds-textarea name="reply-[{$status->id}]">
-                                                    </minds-textarea>
-                                                    <input type="submit" class="m-btn" value="Nhập">
-                                                    <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                                </form>
-                                            </div> -->
                                     </minds-comments>
-
-                                    <!-- <form role = "form" action = "{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
-                                        <div class="form-group{{ $errors->has('reply-{$status->id}') ? ' has-error' : ''}}">
-                                            <textarea name="reply-{{ $status->id }}" class="m-comments-composer">
-
-                                            </textarea>
-                                            @if ($errors->has("reply-{$status->id}"))
-                                                <span class="help-block">
-                                                    {{$errors->first("reply-{$status->id}")}}
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <input type="submit" class="m-btn" value="Nhập">
-                                        <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                    </form> -->
-                                    <!---->
-                                    <!---->
-                                    <!---->
 
                                     <div class="mdl-card__menu mdl-color-text--blue-grey-300 ng-star-inserted">
                                     @if($status->hashtag)
@@ -249,28 +192,16 @@
                                     @endif
                                     <i class="material-icons">public</i>
 
-                                       <!--  <m-post-menu>
-                                            <button class="mdl-button minds-more mdl-button--icon" data-vivaldi-spatnav-clickable="1"><i class="material-icons">keyboard_arrow_down</i></button>
-                                            <ul class="minds-dropdown-menu" hidden="">
-                                                <li class="mdl-menu__item ng-star-inserted" data-vivaldi-spatnav-clickable="1">Share</li>
-                                                <li class="mdl-menu__item ng-star-inserted" data-vivaldi-spatnav-clickable="1">Translate</li>
-                                                <li class="mdl-menu__item ng-star-inserted" data-vivaldi-spatnav-clickable="1">Report</li>
-                                                <li class="mdl-menu__item ng-star-inserted" disabled="">Follow post</li>
-                                                <li class="mdl-menu__item ng-star-inserted" data-vivaldi-spatnav-clickable="1">Block user</li>
-                                            </ul>
-                                            <div class="minds-bg-overlay" hidden=""></div>
-                                        </m-post-menu> -->
                                     </div>
-                                    <!---->
                                 </minds-activity>
 
                                 @endforeach
 
                                 <infinite-scroll>
-                                    <!---->
+
                                     <div class="m-infinite-scroll-manual mdl-color--blue-grey-200 mdl-color-text--blue-grey-500 ng-star-inserted" data-vivaldi-spatnav-clickable="1">
-                                        <!---->Xem thêm</div>
-                                    <!---->
+                                      Xem thêm</div>
+
 
                                 </infinite-scroll>
 

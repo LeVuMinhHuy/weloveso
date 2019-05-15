@@ -42,7 +42,7 @@
         <div class="profile-header-container">
           <div class="profile-header-img">
             <img style=" border-radius: 50%; width:12%"
-               class="rounded-circle UserAvatar" src="{$user->getAvatarUrl() }}" >
+               class="rounded-circle UserAvatar" src="{{ $user->getAvatarUrl() }}" >
             <div class="rank-label-container">
               <span class="label label-default rank-label">{{$user->name}}</span>
             </div>

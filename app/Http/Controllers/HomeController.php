@@ -19,7 +19,7 @@ class HomeController extends Controller
 		$value = Input::get('value');
 		if(Auth::check() &&  ($value==null)){
 			$statuses = Status::notReply()->where(function($query){
-				return $query->where('id', Auth::user()->id)
+				return $query->where('user_id', Auth::user()->id)
 							 ->orWhereIn('user_id', Auth::user()->friends()->pluck('id')
 							);
 			})

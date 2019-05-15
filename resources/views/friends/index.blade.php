@@ -3,8 +3,9 @@
 @section('content')
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min">
-</div>
+      <div class="row justify-content-center parent text-center">
+          <img src="{{$user->getCoverUrl() }}" class="cover"  >
+      </div>
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64">
@@ -16,7 +17,7 @@
           @foreach ($user->friends() as $user)
               @include('user/partials/userblock')
           @endforeach
-      @endif  
+      @endif
   </div>
 
   <div class="col-lg-6">
@@ -28,9 +29,9 @@
           @foreach ($requests as $user)
               @include('user/partials/userblock')
           @endforeach
-      @endif  
+      @endif
   </div>
 </div>
-    
-    
+
+
 @stop
