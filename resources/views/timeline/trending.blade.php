@@ -114,7 +114,7 @@
 
                           @if ($statuses->count())
                               @foreach ($statuses as $status)
-
+                                @if ($status->likes->count() > 2)
 
                                 <minds-activity class="mdl-card m-border item ng-star-inserted">
                                     <div class="mdl-card__supporting-text mdl-color-text--grey-600 m-owner-block ng-star-inserted">
@@ -263,7 +263,7 @@
                                     </div>
                                     <!---->
                                 </minds-activity>
-
+                                @endif
                                 @endforeach
 
                                 <infinite-scroll>

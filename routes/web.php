@@ -19,7 +19,10 @@ Route::get('/home', [
 	'uses' => '\weloveso\Http\Controllers\HomeController@homePage',
 	'as'   => 'home',
 ]);
-
+Route::get('/trending', [
+	'uses' => '\weloveso\Http\Controllers\HomeController@trending',
+	'as'   => 'trending',
+]);
 Route::get('/homeAll', [
 	'uses' => '\weloveso\Http\Controllers\HomeController@homePageAll',
 	'as'   => 'homeAll',

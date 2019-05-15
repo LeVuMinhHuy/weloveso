@@ -66,7 +66,31 @@ class HomeController extends Controller
 					->with('statuses', $statuses)
 					->with('value',$value);
 		}
-
 		return view('homeAll');
+	}
+
+	public function trending(){
+		$value = Input::get('value');
+		if(Auth::check() &&  ($value==null)){
+			$statuses = Status::notReply()->where(function($query){
+				return $query;
+			})
+			->orderBy('created_at', 'desc')
+			->paginate(10);
+			return view('timeline.trending')
+					->with('statuses', $statuses)
+					->with('value',$value);
+		}
+		else if(Auth::check() && $value!=null){
+			$statuses = Status::notReply()->where(function($query) use($value){
+				return $query;
+			})
+			->orderBy('created_at', 'desc')
+			->paginate(10);
+			return view('timeline.trending')
+					->with('statuses', $statuses)
+					->with('value',$value);
+		}
+		return view('trending');
 	}
 }
