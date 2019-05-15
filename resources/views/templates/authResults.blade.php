@@ -451,7 +451,7 @@
 </head>
 
 <body>
-	<div class="container" style="background-image: url(https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/12/19/18/sush0istock-gkrphoto.jpg)!important;  background-repeat: no-repeat;  background-size: 100% 100%;">
+	<div class="container" style="background-image: url(https://dodskypict.com/D/Cute-Food-Wallpaper-On-Wallpaper-Hd-1024x600.jpg)!important;  background-repeat: no-repeat;  background-size: 100% 100%;">
 		@yield('content')
 	</div>
 </body>

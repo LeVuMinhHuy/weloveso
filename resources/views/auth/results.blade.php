@@ -1,13 +1,13 @@
 @extends('templates.authResults')
 
 @section('content')
-    
+
 <body class="antialiased font-sans">
     <div class="md:flex min-h-screen" >
         <div class="w-full md:w-1/2 flex items-center justify-center">
             <div class="max-w-sm m-8">
-                <div class="text-black text-5xl md:text-15xl font-black">
-                    Hihi </div>
+                <div class="text-black text-5xl md:text-10xl font-black">
+                    eat eat eat .. </div>
 
                 <div class="w-16 h-1 bg-purple-light my-3 md:my-6"></div>
 

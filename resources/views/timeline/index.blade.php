@@ -129,12 +129,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="mdl-card__supporting-text m-mature-message ng-star-inserted" m-read-more="">
+                                    <div class="mdl-card__supporting-text m-mature-message" m-read-more="">
                                        <span class="m-mature-message-content">
                                               {{ $status->body }}
                                               <div class="text-center">
                                               @if(true)
-                                              <img  src="{{$status->image}}" style="max-width: 50%;">
+                                              <img  src="{{$status->image}}" style="max-width: 100%;">
                                               @endif
                                               </div>
                                         </span>

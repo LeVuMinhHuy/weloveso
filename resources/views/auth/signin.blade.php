@@ -1,6 +1,7 @@
 @extends('templates.auth')
 
 @section('content')
+
 <m-body class="mdl-color--grey-100">
     <!---->
     <m-login class="ng-star-inserted">
@@ -18,7 +19,7 @@
                                     <span class = "help-block"><h5>{{ $errors->first('username')}}</h5></span>
                                 @endif
                             </div>
-                            
+
                             <div class="mdl-cell mdl-cell--12-col">
                                 <div class="{{ $errors->has('password') ? ' has-error' : ''}}">
                                     <input class="ng-untouched ng-pristine ng-invalid" type="password" name="password">
@@ -46,9 +47,9 @@
                             <a class="mdl-card__subtitle-text mdl-color-text--blue-grey-300 m-reset-password-link" href="">
                                 <!---->Quên mật khẩu?</a>
                         </div>
-                        
+
                         <input type="hidden" name="_token" value="{{Session::token()}}">
-                    </form>    
+                    </form>
                 </minds-form-login>
 
             </div>
@@ -79,7 +80,7 @@
                                 </div>
                                 @if ($errors->has('first_name'))
                                     <span class = "help-block"><h5>{{ $errors->first('first_name')}}</h5></span>
-                                @endif         
+                                @endif
                             </div>
                         </div>
 
@@ -90,7 +91,7 @@
                                 </div>
                                 @if ($errors->has('username'))
                                     <span class = "help-block"><h5>{{ $errors->first('username')}}</h5></span>
-                                @endif         
+                                @endif
                             </div>
                         </div>
 
@@ -101,18 +102,18 @@
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class = "help-block"><h5>{{ $errors->first('password')}}</h5></span>
-                                @endif         
+                                @endif
                             </div>
                         </div>
 
                         <div class="mdl-card__supporting-text mdl-grid">
                             <div class="mdl-cell mdl-cell--12-col">
                                 <div class="{{ $errors->has('email') ? ' has-error' : ''}}">
-                                    <input class="ng-untouched ng-pristine ng-invalid" type="text" placeholder="Email" name="email">    
+                                    <input class="ng-untouched ng-pristine ng-invalid" type="text" placeholder="Email" name="email">
                                 </div>
                                 @if ($errors->has('email'))
                                     <span class = "help-block"><h5>{{ $errors->first('email')}}</h5></span>
-                                @endif         
+                                @endif
                             </div>
                         </div>
 
@@ -137,4 +138,3 @@
 </m-body>
 
 @stop
-

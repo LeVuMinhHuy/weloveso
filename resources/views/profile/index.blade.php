@@ -119,36 +119,36 @@
 
   <div class="w3-row-padding w3-center">
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
+      <img src="{{asset('images/Fast_food_meal.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
+      <img src="{{asset('images/images.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
+      <img src="{{asset('images/images1.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
+      <img src="{{asset('images/images2.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
     </div>
   </div>
   <div class="w3-row-padding w3-center w3-section">
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
+      <img src="{{asset('images/meo_ngu_dong.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
+      <img src="{{asset('images/meo_sua_nha.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empty ghost train">
+      <img src="{{asset('images/meo_seo_phi.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empty ghost train">
     </div>
 
     <div class="w3-col m3">
-      <img src="{{asset('images/try_hard.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
+      <img src="{{asset('images/meo_tap_the_duc.jpg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
     </div>
   </div>
   @if ($statuses->count())
