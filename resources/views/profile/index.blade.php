@@ -3,7 +3,7 @@
 @section('content')
 <style>
   .cover{
-    
+
   width: 80%;
   max-height:300px;
   height:40vh;
@@ -38,23 +38,23 @@
 <div class="w3-display-container w3-opacity-min" id="home" >
     <br><br><br><br>
       <div class="row justify-content-center parent text-center">
-        <img src="{{Auth::user()->getCoverUrl() }}" class="cover"  >
+        <img src="{{$user->getCoverUrl() }}" class="cover"  >
         <div class="profile-header-container">
           <div class="profile-header-img">
             <img style=" border-radius: 50%; width:12%"
-               class="rounded-circle UserAvatar" src="{{Auth::user()->getAvatarUrl() }}" >                
+               class="rounded-circle UserAvatar" src="{$user->getAvatarUrl() }}" >
             <div class="rank-label-container">
               <span class="label label-default rank-label">{{$user->name}}</span>
             </div>
           </div>
         </div>
 
-      </div> 
+      </div>
 </div>
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
-  <h4 class="w3-center"> {{ $user->getNameOrUsername() }} 
+  <h4 class="w3-center"> {{ $user->getNameOrUsername() }}
   </h4>
 
   <div align="right">
@@ -70,10 +70,10 @@
         @endif
       @endif
   </div>
-   
+
   <p><h3>Introduction</h3></p>
-  
-  
+
+
   <div class="w3-row">
     <div class="w3-col m5 w3-center w3-padding-large">
       <img src="{{$user->getIntroImage()}}" class="w3-round w3-image" alt="Photo of Me" width="500" height="333">
@@ -115,7 +115,7 @@
   <h3 class="w3-center">Feature Picture</h3>
 
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-  
+
 
   <div class="w3-row-padding w3-center">
     <div class="w3-col m3">
@@ -186,7 +186,7 @@
                                    <span class="m-mature-message-content">
                                           {{ $status->body }}
                                     </span>
-                                    
+
                                     <m-read-more--button>
                                         <!---->
                                     </m-read-more--button>
@@ -200,14 +200,14 @@
                                 <!-- <div class="tabs ng-star-inserted">
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_up</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">thumb_down</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                    
+
                                     <m-wire-button class="ng-star-inserted">
                                         <button class="m-wire-button"><i class="ion-icon ion-flash"></i></button>
                                     </m-wire-button>
 
                                     <minds-button><a class="mdl-color-text--blue-grey-500 selected"><i class="material-icons">chat_bubble</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
                                     <minds-button><a class="mdl-color-text--blue-grey-500"><i class="material-icons">repeat</i><span class="minds-counter ng-star-inserted">?</span></a></minds-button>
-                                    
+
                                 </div> -->
                                 <!---->
                                 <div class="impressions-tag m-activity--metrics m-activity--metrics-wire ng-star-inserted">
@@ -239,7 +239,7 @@
                                 <!-- <form role = "form" action = "{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
                                     <div class="form-group{{ $errors->has('reply-{$status->id}') ? ' has-error' : ''}}">
                                         <textarea name="reply-{{ $status->id }}" class="m-comments-composer">
-                                          
+
                                         </textarea>
                                         @if ($errors->has("reply-{$status->id}"))
                                             <span class="help-block">
@@ -273,7 +273,7 @@
                             </minds-activity>
 
                             @endforeach
-                            
+
 
                         @else
 
@@ -364,5 +364,5 @@ function toggleFunction() {
     }
 }
 </script>
-   
+
 @stop

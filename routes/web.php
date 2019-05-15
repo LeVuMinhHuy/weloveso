@@ -20,6 +20,11 @@ Route::get('/home', [
 	'as'   => 'home',
 ]);
 
+Route::get('/homeAll', [
+	'uses' => '\weloveso\Http\Controllers\HomeController@homePageAll',
+	'as'   => 'homeAll',
+]);
+
 Route::get('/', [
 	'uses' => '\weloveso\Http\Controllers\WelcomeController@index',
 	'as'   => 'welcome',

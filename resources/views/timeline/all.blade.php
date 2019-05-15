@@ -18,7 +18,7 @@
             <form class="mdl-cell mdl-cell--4-col m-newsfeed--sidebar" id="tag" action="{{ route('home') }}" method="GET">
             <ul class="w3-ul w3-hoverable" >
 
-                <a href="{{ route('homeAll') }}"><li class=" w3-light-blue  w3-hover-blue" id="All" >All<i class="fas fa-globe pull-right icon"></i></li></a>
+                <a href="{{ route('home') }}"><li class=" w3-light-blue  w3-hover-blue" id="All" >All<i class="fas fa-globe pull-right icon"></i></li></a>
                 <a onclick="return getStatus(this);"><li class=" w3-light-blue  w3-hover-blue" id="Trending">Trending<i class="fab fa-hotjar pull-right icon"></i></li></a>
                 <a onclick="return getStatus(this);"><li class="w3-light-blue w3-hover-blue" id="vat">Ăn Vặt<i class="fas fa-ice-cream pull-right icon"></i></li></a>
                 <a onclick="return getStatus(this);"><li class=" w3-light-blue w3-hover-blue" id="sang">Ăn Sáng<i class="fas fa-hamburger pull-right icon"></i></li></a>
